@@ -31,6 +31,9 @@ ENV ELASTALERT_SUPERVISOR_CONF ${CONFIG_DIR}/elastalert_supervisord.conf
 ENV ELASTICSEARCH_HOST elasticsearch_host
 # Port on above Elasticsearch host. Set in default Elasticsearch configuration file.
 ENV ELASTICSEARCH_PORT 9200
+# Provide Default Login Credentials
+ENV ELASTICSEARCH_USER elastic
+ENV ELASTICSEARCH_PASSWORD changeme
 
 WORKDIR /opt
 
