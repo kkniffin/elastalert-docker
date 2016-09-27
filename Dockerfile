@@ -83,6 +83,9 @@ RUN python setup.py install && \
     sed -i -e"s|es_host: [[:print:]]*|es_host: ${ELASTICSEARCH_HOST}|g" ${ELASTALERT_CONFIG} && \
     # Set the port used by Elasticsearch at the above address.
     sed -i -e"s|es_port: [0-9]*|es_port: ${ELASTICSEARCH_PORT}|g" ${ELASTALERT_CONFIG} && \
+    # Setup Default Configuration Options for Authentication
+    sed -i -e"s|^#es_username.*|es_username: ${ELASTICSEARCH_USER}|g" ${ELASTALERT_CONFIG} && \
+    sed -i -e"s|^#es_password.*|es_password: ${ELASTICSEARCH_PASSWORD}|g" ${ELASTALERT_CONFIG} && \
 
 # Elastalert Supervisor configuration:
     # Redirect Supervisor log output to a file in the designated logs directory.
