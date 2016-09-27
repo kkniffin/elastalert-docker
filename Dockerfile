@@ -43,7 +43,7 @@ COPY ./start-elastalert.sh /opt/
 # Install software required for Elastalert and NTP for time synchronization.
 RUN apk update && \
     apk upgrade && \
-    apk add python-dev gcc musl-dev tzdata openntpd && \
+    apk add python-dev gcc musl-dev tzdata openntpd wget && \
 # Install pip - required for installation of Elastalert.
     wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
