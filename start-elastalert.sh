@@ -2,10 +2,6 @@
 
 set -e
 
-# Setup Default Configuration Options for Authentication
-sed -i "s/^#es_username.*/es_username: ${ELASTICSEARCH_USER}/" /opt/elastalert/config.yaml
-sed -i "s/^#es_password.*/es_password: ${ELASTICSEARCH_PASSWORD}/" /opt/elastalert/config.yaml
-
 # Set the timezone.
 if [ "$SET_CONTAINER_TIMEZONE" = "true" ]; then
 	setup-timezone -z ${CONTAINER_TIMEZONE} && \
@@ -40,6 +36,10 @@ else
     echo "Elastalert index already exists in Elasticsearch."
 fi
 rm -f garbage_file
+
+# Setup Default Configuration Options for Authentication
+sed -i "s/^#es_username.*/es_username: ${ELASTICSEARCH_USER}/" /opt/elastalert/config.yaml
+sed -i "s/^#es_password.*/es_password: ${ELASTICSEARCH_PASSWORD}/" /opt/elastalert/config.yaml
 
 echo "Starting Elastalert..."
 exec supervisord -c ${ELASTALERT_SUPERVISOR_CONF} -n
